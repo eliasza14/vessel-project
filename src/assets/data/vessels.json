@@ -1,0 +1,13 @@
+[{"sourcemmsi":"245257000",
+    "navigationalstatus":0,
+    "rateofturn":0,
+    "speedoverground":0.1,
+    "courseoverground":13.1,
+    "trueheading":36,
+    "maritime_area":null,
+    "ship_name":"preveli",
+    "country_code":"245",
+    "date":1443650402000,
+    "location":{"type":"Point",
+                  "coordinates":[48.38249,-4.4657183]}
+                }]
