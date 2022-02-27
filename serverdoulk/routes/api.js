@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 
-const Restaurant = require('../models/restaurant')
 const Vessel = require('../models/vessels')
 
 const db="mongodb://localhost:27017/vessel_db"
@@ -123,30 +122,6 @@ router.post('/vessels',async (req, res) =>  {
 
 
 
-
-router.get("/rests", async (req, res) => {
-	const rests = Restaurant.findOne()
-	res.send(rests)
-})
-
-router.get("/rests/:id", async (req, res) => {
-	const post = await Restaurant.findOne({ _id: req.params.id })
-	res.send(post)
-})
-
-router.get('/getRest', (req, res) => {
-    
-    Restaurant.find({city:'Amsterdam'}, (error, prest) => {
-        if (error) {
-          console.log(error)
-        } else {
-            console.log(prest)
-            res.json(prest)
-          
-        }
-      })
-    
-  })
 
 
 
