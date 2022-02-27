@@ -8,6 +8,7 @@ const vesselSchema = new Schema({
     rateofturn:Number,
     speedoverground:Number,
     courseoverground:Number,
+    shiptype:String,
     trueheading:Number,
     maritime_area:String,
     ship_name:String,

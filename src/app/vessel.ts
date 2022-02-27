@@ -6,6 +6,7 @@ export interface IVessel {
     courseoverground:number,
     trueheading:number,
     maritime_area:null,
+    shiptype:string,
     ship_name:string,
     country:string,
     date:number

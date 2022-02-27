@@ -10,7 +10,7 @@ import { VesselService } from './vessel.service';
 export class AppComponent {
   
   title = 'vessel-project';
-  
+
   lat=51.678418
   lng=7.809007
   iconUrl="assets/images/navigation.png"
@@ -23,6 +23,7 @@ export class AppComponent {
     rateofturn:null,
     speedoverground:null,
     courseoverground:null,
+    shiptype:null,
     trueheading:null,
     maritime_area:null,
     ship_name:null,
