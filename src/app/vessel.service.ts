@@ -16,6 +16,7 @@ export class VesselService {
   private _vesels="http://localhost:3000/api/vessels"
   private _veselsbycount="http://localhost:3000/api/vesselsbycountry"
   private _vesselsinspol="http://localhost:3000/api/vesselsinsidepolygon"
+  private _vesselsinspoldate="http://localhost:3000/api/vesselsinsidepolygondate"
   // private _url:string ="/assets/data/vessels.json";
   
   constructor(private http:HttpClient) { }
@@ -61,7 +62,13 @@ getVesselsInsidePolygon(vessel:any){
                     .pipe(catchError(this.errorHandler))
 
 }
+getVesselsInsidePolygonDateRange(vessel:any,date:any){
+  console.log("coords of poly with Range:"+vessel)
+  console.log("dateRange:"+date)
+  return this.http.post<any>(this._vesselsinspoldate,{date,vessel} ) 
+                    .pipe(catchError(this.errorHandler))
 
+}
 
 
 errorHandler(error: HttpErrorResponse){

@@ -13,7 +13,7 @@ const vesselSchema = new Schema({
     maritime_area:String,
     ship_name:String,
     country:String,
-    date:Date
+    dt:Date
     // location:corr
  
 })

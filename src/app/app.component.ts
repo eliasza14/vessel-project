@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { VesselService } from './vessel.service';
+import { BsDatepickerModule,BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -28,7 +29,7 @@ export class AppComponent {
     maritime_area:null,
     ship_name:null,
     country:null,
-    date:null,
+    dt:null,
     location:null
    
   };
@@ -43,7 +44,7 @@ export class AppComponent {
     maritime_area:null,
     ship_name:null,
     country:null,
-    date:null,
+    dt:null,
     location:null
    
   };
@@ -58,10 +59,17 @@ export class AppComponent {
     maritime_area:null,
     ship_name:null,
     country:null,
-    date:null,
+    dt:null,
     location:null
    
   };
+
+  bsValue = new Date();
+   bsRangeValue: Date[];
+   maxDate = new Date();
+   minDate = new Date();
+
+
 
   // vesselmmsi=""
   func1=false;
@@ -171,10 +179,12 @@ export class AppComponent {
 // };
 
 searchPort=''
-
+searchPort2=''
   constructor(private _vesselService:VesselService) { 
     // let searchPort='port_de_brest';
-  
+    this.minDate.setDate(this.minDate.getDate() - 1);
+    this.maxDate.setDate(this.maxDate.getDate() + 7);
+    this.bsRangeValue = [this.bsValue, this.maxDate];
   }
 
 
@@ -217,6 +227,21 @@ searchPort=''
    
    
   }
+
+  func4(){
+    console.log('rsr'+this.searchPort2)
+    for (let key in this.indexedArray){
+      if (key == this.searchPort2){
+        console.log(this.indexedArray[this.searchPort2]);
+      }
+    }
+    console.log(this.bsRangeValue)
+    this.func1=false;
+    this._vesselService.getVesselsInsidePolygonDateRange(this.indexedArray[this.searchPort2],this.bsRangeValue).subscribe(data=>this.vesselsmap = data );
+   
+   
+  }
+
 
 
 }

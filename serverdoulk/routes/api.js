@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
+const { runInNewContext } = require('vm')
 
 const Vessel = require('../models/vessels')
 
@@ -58,7 +59,7 @@ router.post('/vessels',async (req, res) =>  {
     console.log('mpike sto vessel point by country')
     console.log(vessel.country)
 
-    const pvess=await Vessel.aggregate([{  $match: {country: vessel.country}} ], (error, pvess) => {
+    const pvess=await Vessel.aggregate([{  $match: {country: vessel.country}},{$limit:1500} ], (error, pvess) => {
           if (error) {
             console.log(error)
           } else {
@@ -120,7 +121,39 @@ router.post('/vessels',async (req, res) =>  {
       })
 
 
+      router.post('/vesselsinsidepolygondate',async (req, res) =>  {
+        // let vesselData = req.body
+        let dt1= req.body.date
+        console.log(dt1[0].toString())
+        console.log(dt1)
+        // let dt2= req.body.date
+        // console.log(dt2[1])
 
+        let test=req.body.vessel
+        console.log(test)
+        // let vessel=new Vessel(vesselData)
+        // console.log('mpike sto vessel me date inside poly')
+        // console.log(vesselData)
+        
+        const pvess=await Vessel.aggregate([
+          { "$match": {dt: { "$gte" : new Date(dt1[0].toString())  }} },
+          {  "$match":{dt: {"$lt" : new Date(dt1[1].toString())    }} },
+          { "$match": {location:{$geoWithin:{$geometry:{type:"Polygon",coordinates: [
+          test
+        ]}}}
+        } },{$limit:100}
+      ], (error, pvess) => {
+              if (error) {
+                console.log(error)
+              } else {
+                  console.log(pvess)
+                  res.send(pvess)
+              }
+              }).allowDiskUse(true) 
+        
+        
+        })
+  
 
 
 

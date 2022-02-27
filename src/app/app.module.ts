@@ -10,6 +10,9 @@ import { AppRoutingModule ,routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { VesselService } from './vessel.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { VesselListComponent } from './vessel-list/vessel-list.component';
 
@@ -28,9 +31,11 @@ import { VesselService } from './vessel.service';
    
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot()
     // NgbModule
   ],
-  providers: [VesselService],
+  providers: [VesselService,BsDatepickerConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,7 +9,7 @@ export interface IVessel {
     shiptype:string,
     ship_name:string,
     country:string,
-    date:number
+    dt:Date,
     location:corr
 }
 
